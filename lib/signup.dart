@@ -249,24 +249,28 @@ class _SignupPageState extends State<SignupPage> {
           _infoTextField(
             onChanged: (v) => _firstName = v,
             validator: (v) => v == null || v.isEmpty ? 'First name is required' : null,
+            obscure: false
           ),
           0.1.gap,
           _text('Last Name'),
           _infoTextField(
             onChanged: (v) => _lastName = v,
             validator: (v) => v == null || v.isEmpty ? 'Last name is required' : null,
+            obscure: false
           ),
           0.1.gap,
           _text('Email'),
           _infoTextField(
             onChanged: (v) => _email = v,
             validator: (v) => v == null || v.isEmpty ? 'Email is required' : null,
+            obscure: false
           ),
           0.1.gap,
           _text('Phone Number'),
           _infoTextField(
             onChanged: (v) => _phoneNo = v,
             validator: (v) => v == null || v.isEmpty ? 'Phone number is required' : null,
+            obscure: false
           ),
         ],
       ),
@@ -285,12 +289,14 @@ class _SignupPageState extends State<SignupPage> {
           _infoTextField(
             onChanged: (v) => _username = v,
             validator: (v) => v == null || v.isEmpty ? 'Username is required' : null,
+            obscure: false
           ),
           0.1.gap,
           _text('Referral code'),
           _infoTextField(
             onChanged: (v) => _referral = v,
             validator: (v) => v == null || v.isEmpty ? 'Referral code is required' : null,
+            obscure: false
           ),
         ],
       ),
@@ -308,6 +314,7 @@ class _SignupPageState extends State<SignupPage> {
           _infoTextField(
             onChanged: (v) => _password = v,
             validator: (v) => v == null || v.isEmpty ? 'Password is required' : null,
+            obscure: true
           ),
           0.1.gap,
           _text('Confirm Password'),
@@ -318,7 +325,8 @@ class _SignupPageState extends State<SignupPage> {
               if(_password != _confirmPassword){
                 UiUtils.showSnackBar(context, 'Password does not match');
               }
-            }
+            },
+            obscure: true
           ),
         ],
       ),
@@ -329,11 +337,13 @@ class _SignupPageState extends State<SignupPage> {
     String? hint,
     Function(String)? onChanged,
     String? Function(String?)? validator,
-    TapRegionCallback? onTapOutside
+    TapRegionCallback? onTapOutside,
+    required bool obscure
   }) {
     return SizedBox(
       height: 15.5.pW,
       child: TextFormField(
+        obscureText: obscure,
         onTapOutside: onTapOutside,
         onChanged: onChanged,
         validator: validator,
